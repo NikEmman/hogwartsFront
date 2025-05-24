@@ -1,0 +1,32 @@
+/* Spinning Wheel Component styles */
+.spinning-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.spinning-wheel {
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  color: #3b82f6;
+}
+.spinning-wheel-text {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

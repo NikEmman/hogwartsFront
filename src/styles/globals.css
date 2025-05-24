@@ -1,0 +1,21 @@
+/* Global resets and settings */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: Verdana, Geneva, sans-serif;
+}
