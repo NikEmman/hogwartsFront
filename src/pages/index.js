@@ -1,8 +1,7 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import { useState, useEffect } from "react";
-import SpinningWheel from "./components/SpinningWheel";
-import Card from "./components/Card";
+import SpinningWheel from "../components/SpinningWheel";
+import Card from "../components/Card";
 
 export default function Home() {
   const [houses, setHouses] = useState([]);
@@ -50,9 +49,10 @@ export default function Home() {
         <input
           onChange={(e) => handleInputChange(e.target.value)}
           type="search"
-          placeholder="Search"
+          placeholder="Search houses"
           value={searchText}
         />
+
         {loading ? (
           <SpinningWheel size={60} text="Loading data.." />
         ) : houses.length > 0 ? (

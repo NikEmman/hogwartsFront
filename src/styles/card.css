@@ -1,0 +1,78 @@
+/* Card Component Styles */
+
+.cardContainer {
+  border: 1px solid #e0e0e0;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Founder paragraph styling */
+.cardContainer p {
+  color: #333;
+}
+
+.founder {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Card Search input styling */
+.cardContainer input[type="search"] {
+  width: 55%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.cardContainer input[type="search"]:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+}
+
+.cardContainer input[type="search"]::placeholder {
+  color: #999;
+}
+
+/* Traits container */
+.traitContainer {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trait {
+  background-color: rgb(82, 80, 80);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: white;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cardContainer {
+    width: calc(100% - 32px);
+    margin: 16px auto;
+  }
+}

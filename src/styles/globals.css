@@ -15,7 +15,27 @@ ol,
 ul {
   list-style: none;
 }
-
-body {
+#__next {
+  width: 100%;
   font-family: Verdana, Geneva, sans-serif;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 380px;
+  gap: 16px;
+}
+input {
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+}
+input::placeholder {
+  padding: 4px;
 }
