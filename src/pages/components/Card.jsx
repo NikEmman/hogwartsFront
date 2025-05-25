@@ -23,7 +23,10 @@ function Card({ house = {} }) {
   function handleInputChange(text) {
     setSearchText(text);
   }
-  const filteredTraits = house.traits
+  // Ensure house.traits is an array; default to empty array if undefined
+  const traits = Array.isArray(house.traits) ? house.traits : [];
+
+  const filteredTraits = traits
     .filter((trait) => trait.name.toLowerCase().includes(searchText))
     .map((trait) => {
       return (
