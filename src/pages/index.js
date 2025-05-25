@@ -2,51 +2,31 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import { useState, useEffect } from "react";
 import SpinningWheel from "./components/SpinningWheel";
-import data from "../../data.js";
 import Card from "./components/Card";
 
-// async function fetchData() {
-//   const response = await fetch("http://localhost:3001/api/houses");
-//   const houses = await response.json();
-//   console.log("These are the houses", houses);
-//   return houses;
-// }
-
-// temp mock function that fetches data
-function fetchData() {
-  const houses = data;
-
-  return houses;
-}
 export default function Home() {
   const [houses, setHouses] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
-  //temp use effect
+
   useEffect(() => {
-    let data = fetchData().filter((house) => house.name.includes(searchText));
-
-    setHouses(data);
+    async function fetchHouses() {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `http://localhost:3001/houses?name=${encodeURIComponent(searchText)}`
+        );
+        const data = await response.json();
+        setHouses(data);
+      } catch (error) {
+        console.error("Error fetching houses:", error);
+        setHouses([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHouses();
   }, [searchText]);
-
-  // useEffect(() => {
-  //   async function fetchHouses() {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch(
-  //         `http://localhost:3001/houses?name=${encodeURIComponent(searchText)}`
-  //       );
-  //       const data = await response.json();
-  //       setHouses(data);
-  //     } catch (error) {
-  //       console.error("Error fetching houses:", error);
-  //       setHouses([]);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchHouses();
-  // }, [searchText]);
 
   function handleInputChange(text) {
     setSearchText(text);
