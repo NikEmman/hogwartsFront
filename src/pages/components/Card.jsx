@@ -1,16 +1,20 @@
 import { useState } from "react";
-import cssColors from "../../cssColors";
+import cssColors from "../../../cssColors";
 
 function Card({ house = {} }) {
   const [searchText, setSearchText] = useState([]);
 
-  const getValidColors = (houseColors) => {
-    const colors = houseColors
+  const getValidColors = (houseColours) => {
+    // If houseColours is undefined or not a string, return default colors
+    if (!houseColours || typeof houseColours !== "string") {
+      return ["white", "black"];
+    }
+
+    const colors = houseColours
       .split(" and ")
       .map((color) => color.toLowerCase());
 
     const isValidFirst = cssColors.includes(colors[0]);
-    // this checks if a second color is present in the houseColours
     const isValidSecond = colors[1] ? cssColors.includes(colors[1]) : false;
 
     return isValidFirst && isValidSecond ? colors : ["white", "black"];
