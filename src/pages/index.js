@@ -14,7 +14,9 @@ export default function Home() {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3001/houses?name=${encodeURIComponent(searchText)}`
+          `${process.env.NEXT_PUBLIC_API_URL}/houses?name=${encodeURIComponent(
+            searchText
+          )}`
         );
         const data = await response.json();
         setHouses(data);
