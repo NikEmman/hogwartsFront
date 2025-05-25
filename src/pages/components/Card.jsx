@@ -4,7 +4,7 @@ import cssColors from "../../../cssColors";
 function Card({ house = {} }) {
   const [searchText, setSearchText] = useState([]);
 
-  const getValidColors = (houseColours) => {
+  function getValidColors(houseColours) {
     // If houseColours is undefined or not a string, return default colors
     if (!houseColours || typeof houseColours !== "string") {
       return ["white", "black"];
@@ -18,7 +18,14 @@ function Card({ house = {} }) {
     const isValidSecond = colors[1] ? cssColors.includes(colors[1]) : false;
 
     return isValidFirst && isValidSecond ? colors : ["white", "black"];
-  };
+  }
+  function getHeadName(heads) {
+    if (!heads || heads.length === 0) {
+      return " Unknown";
+    }
+    return ` ${heads[1].firstName}` + " " + `${heads[1].lastName}`;
+  }
+  const headName = getHeadName(house.heads);
   const colors = getValidColors(house.houseColours);
   function handleInputChange(text) {
     setSearchText(text);
@@ -52,9 +59,7 @@ function Card({ house = {} }) {
         />
         <p>
           Founder:
-          <span className="founder">
-            {" " + house.heads[1].firstName + " " + house.heads[1].lastName}
-          </span>
+          <span className="founder">{headName}</span>
         </p>
         <input
           onChange={(e) => handleInputChange(e.target.value)}
