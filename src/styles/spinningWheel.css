@@ -1,6 +1,7 @@
 /* Spinning Wheel Component styles */
 .spinning-wheel-container {
   display: flex;
+  border: 1px solid red;
   flex-direction: column;
   align-items: center;
   justify-content: center;
