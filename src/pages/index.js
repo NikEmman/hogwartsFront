@@ -7,10 +7,12 @@ export default function Home() {
   const [houses, setHouses] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchHouses() {
       setLoading(true);
+      setError("");
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/houses?name=${encodeURIComponent(
@@ -21,6 +23,7 @@ export default function Home() {
         setHouses(data);
       } catch (error) {
         console.error("Error fetching houses:", error);
+        setError(`Error fetching houses: ${error.message}`);
         setHouses([]);
       } finally {
         setLoading(false);
@@ -57,6 +60,8 @@ export default function Home() {
           <SpinningWheel size={60} text="Loading data.." />
         ) : houses.length > 0 ? (
           houseList
+        ) : error ? (
+          <p>{error}</p>
         ) : (
           <p>No houses found.</p>
         )}
