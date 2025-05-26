@@ -13,25 +13,35 @@ export default function Home() {
     async function fetchHouses() {
       setLoading(true);
       setError("");
+
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/houses?name=${encodeURIComponent(
             searchText
           )}`
         );
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+
         const data = await response.json();
+
         setHouses(data);
       } catch (error) {
         console.error("Error fetching houses:", error);
-        setError(`Error fetching houses: ${error.message}`);
+
+        let errorMessage = "Something went wrong. Try again";
+
+        setError(errorMessage);
         setHouses([]);
       } finally {
         setLoading(false);
       }
     }
+
     fetchHouses();
   }, [searchText]);
-
   function handleInputChange(text) {
     setSearchText(text);
   }
