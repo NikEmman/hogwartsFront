@@ -5,11 +5,12 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  padding-top: 100px;
 }
 
 .spinning-wheel {
-  border: 3px solid #f3f4f6;
-  border-top: 3px solid #3b82f6;
+  border: 5px solid #f3f4f6;
+  border-top: 5px solid #3b82f6;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   color: #3b82f6;
