@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import SpinningWheel from "../SpinningWheel";
+import SpinningWheel from "../pages/components/SpinningWheel";
 
 describe("SpinningWheel Component", () => {
   it("renders with default size and no text", () => {
