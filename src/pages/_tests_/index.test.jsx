@@ -25,10 +25,6 @@ jest.mock("next/head", () => {
 
 fetchMock.enableMocks();
 
-// Mock environment variable
-const mockApiUrl = "https://api.example.com";
-process.env.NEXT_PUBLIC_API_URL = mockApiUrl;
-
 describe("Home Page", () => {
   it("renders loading state initially", async () => {
     fetchMock.mockImplementation(
@@ -78,7 +74,9 @@ describe("Home Page", () => {
       { timeout: 3000 }
     );
 
-    expect(fetchMock).toHaveBeenCalledWith(`${mockApiUrl}/houses?name=`);
+    expect(fetchMock).toHaveBeenCalledWith(
+      `${process.env.NEXT_PUBLIC_API_URL}/houses?name=`
+    );
   });
 
   it("displays error message when API call fails with network error", async () => {
