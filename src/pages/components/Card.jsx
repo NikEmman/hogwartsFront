@@ -2,7 +2,7 @@ import { useState } from "react";
 import cssColors from "../../../cssColors";
 
 function Card({ house = {} }) {
-  const [searchText, setSearchText] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   function getValidColors(houseColours) {
     // If houseColours is undefined or not a string, return default colors
@@ -22,15 +22,17 @@ function Card({ house = {} }) {
   function getHeadName(heads) {
     if (!heads || heads.length === 0) {
       return " Unknown";
+    } else if (heads.length === 1) {
+      return ` ${heads[0].firstName}` + " " + `${heads[0].lastName}`;
     }
     return ` ${heads[1].firstName}` + " " + `${heads[1].lastName}`;
   }
   const headName = getHeadName(house.heads);
   const colors = getValidColors(house.houseColours);
   function handleInputChange(text) {
-    setSearchText(text);
+    setSearchText(text.toLowerCase().trim());
   }
-  // Ensure house.traits is an array; default to empty array if undefined
+  // Ensure house.traits is an array, else default to empty array if undefined
   const traits = Array.isArray(house.traits) ? house.traits : [];
 
   const filteredTraits = traits
@@ -50,6 +52,7 @@ function Card({ house = {} }) {
           <p>{house.animal}</p>
         </div>
         <div
+          data-testid="color-gradient"
           style={{
             width: "100%",
             height: "25px",
